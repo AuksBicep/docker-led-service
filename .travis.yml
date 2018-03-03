@@ -1,0 +1,17 @@
+sudo: required
+services:
+- docker
+language: bash
+script:
+# prepare qemu
+- docker run --rm --privileged multiarch/qemu-user-static:register --reset
+# build image
+- export LAST_TAG=$(git describe --abbrev=0 --tags 2>/dev/null) && export LAST_TAG=${LAST_TAG:-0.0}
+- export REVISION=$(./build/tag_revision.sh)
+- export TAG_ARM=$LAST_TAG".${REVISION}-arm"
+- docker build -t auksbicep/docker-led-service:$TAG_ARM -t auksbicep/docker-led-service:arm .
+- docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
+- docker push auksbicep/docker-led-service:$TAG_ARM
+- docker push auksbicep/docker-led-service:arm
+- docker push auksbicep/docker-led-service:latest
+
