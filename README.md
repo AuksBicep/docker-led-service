@@ -1,5 +1,8 @@
 # docker-led-service
 
+Monitors number of docker containers running on Raspberry Pi, and will light up LED indicators for each container running.
+
+## Details
 LED Controller for [Blinkt](https://shop.pimoroni.com/products/blinkt).  The service parses json out of the environmental variables,  and uses compiled regular expressions on order to match image names of running [Docker](https://docs.docker.com/develop/sdk/) containers,  and light up specified colors.  Configuration loaded from Environment in alphabetical order, in the case of overlapping matches, first color match wins.
 
 ## Example
