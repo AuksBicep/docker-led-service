@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/AuksBicep/docker-led-service.svg?branch=master)](https://travis-ci.org/AuksBicep/docker-led-service) [![Docker Pulls](https://img.shields.io/docker/pulls/auksbicep/docker-led-service.svg)](https://hub.docker.com/r/auksbicep/docker-led-service/)
 # docker-led-service
 
 Monitors number of docker containers running on Raspberry Pi, and will light up LED indicators for each container running.
