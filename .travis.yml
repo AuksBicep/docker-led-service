@@ -13,5 +13,4 @@ script:
 - docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
 - docker push auksbicep/docker-led-service:$TAG_ARM
 - docker push auksbicep/docker-led-service:arm
-- docker push auksbicep/docker-led-service:latest
 
