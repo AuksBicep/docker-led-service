@@ -2,11 +2,10 @@
 
 import os
 import json
-import colorsys
 import time
 import itertools
-import sys
 import re
+import collections
 
 import docker
 import blinkt
@@ -15,9 +14,11 @@ docker_client = docker.from_env()
 blinkt.set_clear_on_exit()
 blinkt.set_brightness(0.034)
 
+orderedEnv = collections.OrderedDict(sorted(os.environ.items())).items()
+
 match_color = reduce(
         lambda acc, cur: dict(itertools.chain(acc.items(), { re.compile(cur['match']):cur }.items())),
-        [json.loads(v) for k, v in os.environ.items() if k.startswith('DLI_CONTAINER')],
+        [json.loads(v) for k, v in orderedEnv if k.startswith('DLS_IMAGE_COLOR_MATCH')],
         {})
 
 while True:
